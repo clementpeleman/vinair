@@ -37,8 +37,8 @@ export default function App() {
         return;
       }
 
-      setIsLoggedIn(!!session?.user);
-      setUserEmail(session?.user?.email || null);
+      setIsLoggedIn(!!session?.session?.user);
+      setUserEmail(session?.session?.user?.email || null);
     };
 
     fetchSession();
@@ -77,7 +77,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="py-2">
+    <Navbar className="py-2" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

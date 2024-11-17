@@ -1,3 +1,3 @@
 export default function WineParing() {
-    return <div>WineParing Page</div>;
+  return <div>WineParing Page</div>;
 }

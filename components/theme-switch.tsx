@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
 import clsx from "clsx";
 
-import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
+import { SunFilledIcon, MoonFilledIcon } from "@/components/Icons";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -71,9 +71,9 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
         })}
       >
         {!isSelected || isSSR ? (
-          <SunFilledIcon size={22} />
+          <SunFilledIcon height={undefined} size={22} width={undefined} />
         ) : (
-          <MoonFilledIcon size={22} />
+          <MoonFilledIcon height={undefined} size={22} width={undefined} />
         )}
       </div>
     </Component>

@@ -14,7 +14,7 @@ export const fontMono = FontMono({
 export const fontMilo = localFont({
   src: [
     {
-      path: "./../public/fonts/milo.ttf",
+      path: "/fonts/milo.ttf",
       weight: "400",
     },
   ],
@@ -24,7 +24,7 @@ export const fontMilo = localFont({
 export const fontMundo = localFont({
   src: [
     {
-      path: "./../public/fonts/mundo.ttf",
+      path: "/fonts/mundo.ttf",
       weight: "400",
     },
   ],

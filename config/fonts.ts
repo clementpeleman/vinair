@@ -19,6 +19,7 @@ export const fontMilo = localFont({
     },
   ],
   variable: "--font-milo",
+  display: 'swap',
 });
 
 export const fontMundo = localFont({
@@ -29,4 +30,5 @@ export const fontMundo = localFont({
     },
   ],
   variable: "--font-mundo",
+  display: 'swap',
 });

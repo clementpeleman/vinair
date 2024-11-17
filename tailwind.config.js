@@ -9,9 +9,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'custom': '0 0 15px rgba(0, 0, 0, 0.05), 0 0 15px rgba(0, 0, 0, 0.05)',
+      },
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
+        mundo: ["var(--font-mundo)"],
+        milo: ["var(--font-milo)"],
       },
     },
   },

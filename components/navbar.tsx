@@ -84,9 +84,9 @@ export default function App() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Link className="text-inherit" href="/">
+          <Link className="" href="/">
             <Logo height={undefined} width={undefined} />
-            <p className="font-bold text-inherit text-xl">Vinair</p>
+            <p className="font-mundo text-black text-3xl"><span className="text-black">Vi</span>nair</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>

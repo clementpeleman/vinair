@@ -34,45 +34,36 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col h-screen justify-center items-center bg-gray-100 dark:bg-gray-900">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <h2 className="text-2xl text-center">Inloggen</h2>
-        </CardHeader>
-        <CardBody className="space-y-4">
-          <div className="space-y-2">
-            <Input
-              required
-              id="email"
-              name="email"
-              placeholder="m@example.com"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="space-y-2">
-            <Input
-              required
-              id="password"
-              name="password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          {error && <div className="text-red-500">{error}</div>}
-        </CardBody>
-        <CardFooter className="flex flex-col space-y-2">
-          <Button className="w-full" disabled={loading} onClick={handleLogin}>
-            {loading ? "Inloggen..." : "Inloggen"}
-          </Button>
-        </CardFooter>
-      </Card>
-      <div className="mt-4">
-        <span className="text-sm">Heb je geen account? </span>
-        <Link className="text-sm text-blue-500" href="#">
-          Aanmelden
-        </Link>
+    <div className="flex flex-col items-center justify-center min-h-[65vh] p-4">
+    <div className="shadow-custom rounded-lg p-6 w-full max-w-sm">
+      <h1 className="text-2xl text-center mb-4">Login</h1>
+      <div className="w-full max-w-sm space-y-4">
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          radius="sm"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          radius="sm"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {error && <p className="text-red-500">{error}</p>}
+        <Button
+          className="w-full text-white"
+          disabled={loading}
+          onClick={handleLogin}
+          color="primary"
+          radius="sm"
+        >
+          {loading ? "Logging in..." : "Login"}
+        </Button>
       </div>
     </div>
+  </div>
   );
 }

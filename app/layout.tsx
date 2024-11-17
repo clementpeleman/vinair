@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontMundo, fontMilo, fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
@@ -38,6 +38,8 @@ export default function RootLayout({
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
+          fontMilo.variable,
+          fontMundo.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
@@ -45,8 +47,8 @@ export default function RootLayout({
           <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
             {children}
           </main>
-          <footer className="w-full flex items-center justify-center py-3">
-            Vinair
+          <footer className="w-full italic text-default flex items-center justify-center py-3">
+            Vinair © 2024
           </footer>
         </Providers>
       </body>

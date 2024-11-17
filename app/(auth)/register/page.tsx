@@ -31,26 +31,30 @@ export default function RegisterPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[65vh] p-4">
-      <div className="shadow-lg rounded-lg p-6 w-full max-w-sm">
+      <div className="shadow-custom rounded-lg p-6 w-full max-w-sm">
         <h1 className="text-2xl text-center mb-4">Register</h1>
         <div className="w-full max-w-sm space-y-4">
           <Input
             type="email"
             placeholder="Email"
             value={email}
+            radius="sm"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             type="password"
             placeholder="Password"
             value={password}
+            radius="sm"
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className="text-red-500">{error}</p>}
           <Button
-            className="w-full"
+            className="w-full text-white"
             disabled={loading}
             onClick={handleRegister}
+            color="primary"
+            radius="sm"
           >
             {loading ? "Registering..." : "Register"}
           </Button>

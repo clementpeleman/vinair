@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import { Link } from "@nextui-org/link";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 
 import { title, subtitle } from "@/components/primitives";
 import { supabase } from "@/lib/supabase";
@@ -69,9 +70,35 @@ export default function Home() {
         </div>
       </section>
       <section className="bg-[rgba(0,142,117,0.11)] min-h-[100vh]">
-            <div>
-
-            </div>
+        <img
+          alt="Arc Illustration"
+          className="w-full h-auto object-top transform scale-y-[0.4] origin-top"
+          src="/arc-cropped.svg"
+        />
+        <div className="flex justify-center gap-4 mt-16">
+          <Card radius="lg" className="flex items-center shadow-none w-1/3">
+            <CardHeader>
+              <h3 className="w-full text-[42px] text-center font-milo  ">Scan To Get Started</h3>
+            </CardHeader>
+            <CardBody className="w-2/3 text-center">
+              <p className={subtitle()}>Effortlessly select wines that perfectly complement your existing menu or seasonal dishes with just a scan.</p>
+            </CardBody>
+            <CardFooter className="w-full">
+              <Link href="/link1" className="mx-auto text-primary">More Information</Link>
+            </CardFooter>
+          </Card>
+          <Card radius="lg" className="flex items-center shadow-none w-1/3">
+            <CardHeader>
+              <h3 className="w-full text-[42px] text-center font-milo  ">Serve Wine And Knowledge</h3>
+            </CardHeader>
+            <CardBody className="w-2/3 text-center">
+              <p className={subtitle()}>Offer your guests expertly paired wines that enhance their dining experience.</p>
+            </CardBody>
+            <CardFooter className="w-full">
+              <Link href="/link1" className="mx-auto text-primary">More Information</Link>
+            </CardFooter>
+          </Card>
+        </div>
       </section>
     </>
   );

@@ -47,9 +47,9 @@ export default function RootLayout({
           <main className=" mx-auto w-full pt-16 flex-grow">
             {children}
           </main>
-          <footer className="w-full italic text-default flex items-center justify-center py-3">
+          {/* <footer className="w-full italic text-default flex items-center justify-center py-3">
             Vinair © 2024
-          </footer>
+          </footer> */}
         </Providers>
       </body>
     </html>

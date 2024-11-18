@@ -5,42 +5,16 @@ export const siteConfig = {
   description: "Find your perfect wine pairing",
   navItems: [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
       label: "Features",
       href: "/features",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
     },
     {
       label: "About",
       href: "/about",
     },
-  ],
-  navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "Blog",
+      href: "/blog",
     },
   ],
   links: {

@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { Logo } from "./Icons";
 
 import { supabase } from "@/lib/supabase";
+import { siteConfig } from "@/config/site";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -72,8 +73,6 @@ export default function App() {
     }
   };
 
-  const menuItems = ["Features", "About Us", "Blog"];
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -92,10 +91,10 @@ export default function App() {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {menuItems.map((item, index) => (
+        {siteConfig.navItems.map((item, index) => (
           <NavbarItem key={index}>
-            <Link color="foreground" href="#">
-              {item}
+            <Link color="foreground" href={item.href}>
+              {item.label}
             </Link>
           </NavbarItem>
         ))}
@@ -146,14 +145,14 @@ export default function App() {
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
+        {siteConfig.navItems.map((item, index) => (
           <NavbarMenuItem key={index}>
             <Link
               className="w-full"
               color={index === 1 ? "primary" : "foreground"}
-              href="#"
+              href={item.href}
             >
-              {item}
+              {item.label}
             </Link>
           </NavbarMenuItem>
         ))}

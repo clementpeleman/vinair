@@ -18,6 +18,18 @@ module.exports = {
         mundo: ["var(--font-mundo)"],
         milo: ["var(--font-milo)"],
       },
+      animation: {
+        pulseSaturation: 'pulseSaturation 2s infinite',
+      },
+      keyframes: {
+        pulseSaturation: {
+          '0%': { filter: 'saturate(1)' },
+          '25%': { filter: 'saturate(1.1)' },
+          '50%': { filter: 'saturate(1.2)' },
+          '75%': { filter: 'saturate(1.05)' },
+          '100%': { filter: 'saturate(1)' },
+        },
+      },
     },
   },
   darkMode: "class",
@@ -26,6 +38,8 @@ module.exports = {
       light: {
         colors: {
           primary: "#e54726",
+          deepPink: "#fd4b8b",
+          deepBlue: "rgba(137, 121, 236)"
         }
       }
     }

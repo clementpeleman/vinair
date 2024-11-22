@@ -111,7 +111,7 @@ export default function App() {
                 color="default"
                 name="User Avatar"
                 size="md"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                src={`https://avatar.iran.liara.run/username?username=${userEmail}`}
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">

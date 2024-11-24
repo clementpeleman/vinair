@@ -106,7 +106,7 @@ export default function Home() {
             <div className="min-h-[270] lg:min-h-[300px]">
               <CardHeader>
                 <h3 className="w-full leading-[48px] md:leading-none text-[42px] text-center font-milo mb-4 mt-4 md:mt-8">
-                  Scan To Get Started
+                  Scan Your Existing Menu
                 </h3>
               </CardHeader>
               <CardBody className="px-4 lg:px-0 lg:w-2/3 text-center mx-auto mb-8 lg:mb-16">

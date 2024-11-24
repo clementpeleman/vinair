@@ -85,7 +85,9 @@ export default function App() {
         <NavbarBrand>
           <Link className="" href="/">
             <Logo height={undefined} width={undefined} />
-            <p className="font-mundo text-black text-3xl"><span className="text-black">Vi</span>nair</p>
+            <p className="font-mundo text-black text-3xl">
+              <span className="text-black">Vi</span>nair
+            </p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -115,9 +117,10 @@ export default function App() {
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">{userEmail || "Unknown"}</p>
+              <DropdownItem key="profile-lin">
+                <Link className="w-full" href="/profile" color="foreground">
+                  Profile
+                </Link>
               </DropdownItem>
               <DropdownItem key="logout" color="danger">
                 <Link className="w-full" color="danger" onClick={handleLogout}>

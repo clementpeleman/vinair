@@ -66,7 +66,7 @@ export default function SecFeatures() {
             </div>
             <h3
               className={subtitle({
-                class: "text-blacktext-2xl",
+                class: "text-blacktext-2xl mb-[-1px] md:mb-0",
                 size: "md",
               })}
             >
@@ -86,7 +86,7 @@ export default function SecFeatures() {
             </div>
             <h3
               className={subtitle({
-                class: "text-black text-2xl",
+                class: "text-black text-2xl mb-[-1px] md:mb-0",
                 size: "md",
               })}
             >
@@ -106,7 +106,7 @@ export default function SecFeatures() {
             </div>
             <h3
               className={subtitle({
-                class: "text-black text-2xl",
+                class: "text-black text-2xl mb-[-1px] md:mb-0",
                 size: "md",
               })}
             >
@@ -126,7 +126,7 @@ export default function SecFeatures() {
             </div>
             <h3
               className={subtitle({
-                class: "text-black text-2xl",
+                class: "text-black text-2xl mb-[-1px] md:mb-0",
                 size: "md",
               })}
             >

@@ -76,7 +76,11 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Navbar className="py-2" onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      className="py-2"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={(open) => setIsMenuOpen(open)}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -118,7 +122,7 @@ export default function App() {
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile-lin">
-                <Link className="w-full" href="/profile" color="foreground">
+                <Link className="w-full" color="foreground" href="/profile">
                   Profile
                 </Link>
               </DropdownItem>
@@ -131,7 +135,13 @@ export default function App() {
           </Dropdown>
         ) : (
           <>
-            <Button as={Link} className="underline" href="/login" radius="sm" variant="light">
+            <Button
+              as={Link}
+              className="underline"
+              href="/login"
+              radius="sm"
+              variant="light"
+            >
               Login
             </Button>
             <Button
@@ -152,8 +162,11 @@ export default function App() {
           <NavbarMenuItem key={index}>
             <Link
               className="w-full"
-              color={index === 1 ? "primary" : "foreground"}
+              color="foreground"
               href={item.href}
+              onClick={() => {
+                setIsMenuOpen(false); // Sluit het menu
+              }}
             >
               {item.label}
             </Link>

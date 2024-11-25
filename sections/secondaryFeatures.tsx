@@ -47,7 +47,7 @@ export default function SecFeatures() {
       </p>
       <p
         className={title({
-          class: "max-w-[570px] px-6 mx-auto font-milo",
+          class: "max-w-[570px] px-6 mx-auto text-left font-milo",
           fullWidth: true,
         })}
       >

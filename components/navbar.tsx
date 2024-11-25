@@ -18,6 +18,7 @@ import {
 } from "@nextui-org/react";
 import * as React from "react";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import { Logo } from "./Icons";
 
@@ -73,6 +74,7 @@ export default function App() {
     }
   };
 
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -99,7 +101,10 @@ export default function App() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {siteConfig.navItems.map((item, index) => (
           <NavbarItem key={index}>
-            <Link color="foreground" href={item.href}>
+            <Link
+              color={pathname === item.href ? "primary" : "foreground"}
+              href={item.href}
+            >
               {item.label}
             </Link>
           </NavbarItem>
@@ -162,7 +167,7 @@ export default function App() {
           <NavbarMenuItem key={index}>
             <Link
               className="w-full"
-              color="foreground"
+              color={pathname === item.href ? "primary" : "foreground"} // Huidige tab krijgt de primary kleur
               href={item.href}
               onClick={() => {
                 setIsMenuOpen(false); // Sluit het menu

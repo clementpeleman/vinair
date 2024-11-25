@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        'custom': '0 0 15px rgba(0, 0, 0, 0.05), 0 0 15px rgba(0, 0, 0, 0.05)',
+        'custom': '0 0 15px rgba(0, 0, 0, 0.02), 0 0 15px rgba(0, 0, 0, 0.02)',
       },
       fontFamily: {
         sans: ["var(--font-sans)"],

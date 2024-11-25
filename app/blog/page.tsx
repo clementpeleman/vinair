@@ -1,9 +1,9 @@
-import { title } from "@/components/primitives";
+import { subtitle } from "@/components/primitives";
 
 export default function BlogPage() {
   return (
-    <div>
-      <h1 className={title()}>Blog</h1>
+    <div className="mt-[-4vh] mb-[-80px] md:mt-0 md:mb-0">
+      <p className={subtitle({ size: "md", class: "tracking-wider" })}>BLOG</p>
     </div>
   );
 }

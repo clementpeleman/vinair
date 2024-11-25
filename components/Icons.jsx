@@ -396,3 +396,56 @@ export const NextUILogo = (props) => {
     </svg>
   );
 };
+
+export const RightArrow = ({ fill = "currentColor", size, height, width, ...props }) => {
+  return (
+    <svg
+      fill="none"
+      height={size || height || 24}
+      viewBox="0 0 24 24"
+      width={size || width || 24}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M8 4l8 8-8 8"
+        stroke={fill}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const RightArrowWithLine = ({ fill = "currentColor", size, height, width, ...props }) => {
+  return (
+    <svg
+      fill="none"
+      height={size || height || 24}
+      viewBox="0 0 24 24"
+      width={size || width || 24}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      {/* Horizontale lijn */}
+      <path
+        d="M4 12h12"
+        stroke={fill}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Pijl aan het einde */}
+      <path
+        d="M13 8l4 4-4 4"
+        stroke={fill}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+

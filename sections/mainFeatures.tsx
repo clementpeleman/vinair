@@ -24,13 +24,13 @@ export default function Features() {
           >
             1. SCANNING
           </Button>
-          <div className="min-h-[270] lg:min-h-[300px]">
+          <div className="min-h-[230] lg:min-h-[300px]">
             <CardHeader>
-              <h3 className="w-full leading-[48px] md:leading-none text-[42px] text-center font-milo mb-4 mt-4 md:mt-8">
+              <h3 className="w-full leading-[40px] md:leading-none text-[36px] md:text-[42px] text-center font-milo mb-[-8] md:mb-4 mt-4 md:mt-8">
                 Scan Your Menu
               </h3>
             </CardHeader>
-            <CardBody className="px-4 lg:px-0 lg:w-2/3 text-center mx-auto mb-8 lg:mb-16">
+            <CardBody className="px-6 lg:px-0 lg:w-2/3 text-center mx-auto lg:mb-16">
               <p className={subtitle()}>
                 Effortlessly select wines that perfectly complement your
                 existing menu or seasonal dishes with just a scan.
@@ -60,13 +60,13 @@ export default function Features() {
           >
             2. SERVING
           </Button>
-          <div className="min-h-[270] lg:min-h-[300px]">
+          <div className="min-h-[250] lg:min-h-[300px]">
             <CardHeader>
-              <h3 className="w-full leading-[48px] md:leading-none text-[42px] text-center font-milo mt-4 md:mt-8">
+              <h3 className="w-full leading-[40px] md:leading-none text-[36px] md:text-[42px] text-center font-milo mb-[-8] md:mb-0 mt-4 md:mt-8">
                 Serve Wine And Knowledge
               </h3>
             </CardHeader>
-            <CardBody className="px-4 md:px-0 md:w-5/6 text-center mx-auto mb-8 lg:mb-16">
+            <CardBody className="px-6 md:px-0 md:w-5/6 text-center mx-auto mb-8 lg:mb-16">
               <p className={subtitle()}>
                 Offer your guests expertly paired wines that enhance their
                 dining experience.

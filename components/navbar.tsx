@@ -131,7 +131,7 @@ export default function App() {
           </Dropdown>
         ) : (
           <>
-            <Button as={Link} href="/login" radius="sm" variant="bordered">
+            <Button as={Link} className="underline" href="/login" radius="sm" variant="light">
               Login
             </Button>
             <Button

@@ -142,7 +142,7 @@ export default function App() {
           <>
             <Button
               as={Link}
-              className="underline"
+              className=""
               href="/login"
               radius="sm"
               variant="light"

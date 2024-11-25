@@ -67,7 +67,7 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-      <div className="relative w-full max-w-[700px] lg:w-1/2 h-[60vh] mt-[-2vh] lg:mt-[-10vh]">
+      <div className="relative w-full max-w-[700px] lg:w-2/3 h-[60vh] mt-[-2vh] lg:mt-[-10vh]">
         {" "}
         {/* Container voor de afbeelding */}
         <Image

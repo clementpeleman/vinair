@@ -47,15 +47,15 @@ export default function SecFeatures() {
       </p>
       <p
         className={title({
-          class: "max-w-[570px] mx-auto font-milo",
+          class: "max-w-[570px] px-6 mx-auto font-milo",
           fullWidth: true,
         })}
       >
         Gain Customers By <span className="">Elevating</span> Experiences.
       </p>
-      <div className="container mt-32 mx-auto px-16 py-8 mb-28">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="flex flex-col items-center text-center px-16 bg-white rounded-lg ">
+      <div className="container mt-16 md:mt-32 mx-auto xl:px-16 py-8 mb-16 md:mb-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-0 xl:gap-4">
+          <div className="flex flex-col items-center text-center px-4 xl:px-16 bg-white rounded-lg mb-0 md:mb-16 lg:mb-0">
             <div className="bg-pink-100 p-5 rounded-3xl mb-2">
               <Image
                 alt="Increase customer experiences"
@@ -75,7 +75,7 @@ export default function SecFeatures() {
             <p className=" text-gray-500">Enhance experiences</p>
           </div>
 
-          <div className="flex flex-col items-center text-center px-16 bg-white rounded-lg ">
+          <div className="flex flex-col items-center text-center px-20 md:px-4 xl:px-16 bg-white rounded-lg ">
             <div className="bg-blue-100 p-5 rounded-3xl mb-2">
               <Image
                 alt=""
@@ -95,7 +95,7 @@ export default function SecFeatures() {
             <p className=" text-gray-500">Get started using our menu scanner</p>
           </div>
 
-          <div className="flex flex-col items-center text-center px-16 bg-white rounded-lg ">
+          <div className="flex flex-col items-center text-center px-20 xl:px-12 bg-white rounded-lg ">
             <div className="bg-green-100 p-5 rounded-3xl mb-2">
               <Image
                 alt=""
@@ -139,7 +139,7 @@ export default function SecFeatures() {
         </div>
       </div>
 
-      <div className="container mx-auto py-16 bg-gray-50 rounded-xl mb-32 max-w-[1200px]">
+      <div className="container py-16 bg-gray-50 rounded-xl mb-32 mx-auto w-[90vw] md:w-auto lg:max-w-[1200px]">
         <div className="text-center">
           <p
             className={subtitle({

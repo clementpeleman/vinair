@@ -2,25 +2,17 @@ import { supabase } from '@/lib/supabase';
 
 export const login = async (credentials: { email: string; password: string }) => {
   try {
-    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: credentials.email,
       password: credentials.password,
     });
 
-    if (authError) throw authError;
+    const user = data?.user;
 
-    const user = authData?.user;
+    if (error) throw error;
 
-    // Haal avatar_url op uit de 'profiles' tabel
-    const { data: profileData, error: profileError } = await supabase
-      .from("profiles")
-      .select("avatar_url")
-      .eq("id", user?.id)
-      .single();
-
-    if (profileError) throw profileError;
-
-    return { success: true, user, avatarUrl: profileData?.avatar_url };
+    // Return user data instead of redirecting here
+    return { success: true, user };
   } catch (err: unknown) {
     if (err instanceof Error) {
       return { success: false, error: err.message };
@@ -30,58 +22,68 @@ export const login = async (credentials: { email: string; password: string }) =>
   }
 };
 
-
-export const register = async (
-  credentials: { email: string; password: string },
-  avatarFile?: File // Maak avatarFile optioneel, zodat we dit kunnen controleren
-) => {
+export const register = async (credentials: { email: string; password: string }) => {
   try {
-    if (!avatarFile) {
-      throw new Error("Avatar file is required but not provided.");
-    }
+    const { data, error } = await supabase.auth.signUp({
+      email: credentials.email,
+      password: credentials.password,
+    });
 
+    const user = data?.user;
+
+    if (error) throw error;
+
+    // Return user data instead of redirecting here
+    return { success: true, user };
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      return { success: false, error: err.message };
+    } else {
+      return { success: false, error: "An unknown error occurred." };
+    }
+  }
+};
+
+export const registerUserWithAvatarBlob = async (credentials: { email: string; password: string }) => {
+  try {
+    // Stap 1: Registreer de gebruiker via Supabase Auth
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: credentials.email,
       password: credentials.password,
     });
 
-    if (authError) throw authError;
+    if (authError) throw new Error(`Registration failed: ${authError.message}`);
 
     const user = authData?.user;
+    if (!user) throw new Error("Registration failed: No user data returned.");
 
-    if (!user) {
-      throw new Error("Registration failed. User data is not available.");
+    // Stap 2: Genereer de avatar-URL op basis van het e-mailadres
+    const avatarUrl = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
+      credentials.email
+    )}`;
+
+    // Stap 3: Download de afbeelding als blob
+    const response = await fetch(avatarUrl); // Ophalen van de afbeelding
+    if (!response.ok) {
+      throw new Error(`Failed to fetch avatar from URL: ${response.statusText}`);
     }
 
-    // Stap 1: Upload afbeelding naar Supabase Storage
-    const avatarFilePath = `${user.id}/${avatarFile.name}`;
-    const { data: storageData, error: storageError } = await supabase.storage
-      .from("avatars") // Bucketnaam
-      .upload(avatarFilePath, avatarFile);
+    const avatarBlob = await response.arrayBuffer(); // Lees het bestand als ArrayBuffer
+    const avatarUint8Array = new Uint8Array(avatarBlob); // Converteer naar Uint8Array
 
-    if (storageError) throw storageError;
-
-    const avatarUrl = supabase.storage.from("avatars").getPublicUrl(avatarFilePath).data.publicUrl;
-
-    // Stap 2: Voeg gebruiker toe aan de 'profiles' tabel met de avatar URL
+    // Stap 4: Voeg een profiel toe aan de 'profiles' tabel
     const { error: profileError } = await supabase.from("profiles").insert({
-      id: user.id,
-      email: credentials.email,
-      avatar_url: avatarUrl,
+      id: user.id, // ID moet overeenkomen met de gebruiker in auth.users
+      avatar_blob: avatarUint8Array, // Sla de afbeelding op als blob
     });
 
-    if (profileError) throw profileError;
+    if (profileError) throw new Error(`Profile creation failed: ${profileError.message}`);
 
-    return { success: true, user, avatarUrl };
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      return { success: false, error: err.message };
-    } else {
-      return { success: false, error: "An unknown error occurred." };
-    }
+    return { success: true, user };
+  } catch (error: any) {
+    return { success: false, error: error.message || "An unknown error occurred" };
   }
 };
-
 
 
 

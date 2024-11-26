@@ -21,17 +21,13 @@ interface Dish {
 }
 
 interface Category {
+  name: string;
   dishes: Dish[];
 }
 
 interface ApiResponse {
   restaurant?: string;
-  categories?: Record<string, Category>;
-}
-
-interface MenuItem {
-  name: string;
-  price: number | null;
+  categories?: Record<string, Dish[]>;
 }
 
 interface WinePairing {
@@ -52,8 +48,7 @@ interface RecommendationWrapper {
 
 export default function MenuScanner() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [dishes, setDishes] = useState<MenuItem[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [dishes, setDishes] = useState<Category[]>([]);
   const [uploadStatus, setUploadStatus] = useState("");
   const [manualDishes, setManualDishes] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -86,16 +81,21 @@ export default function MenuScanner() {
       if (res.ok) {
         const data: ApiResponse = await res.json();
 
-        console.log("API Response:", data);
+        // console.log("API Response:", data);
 
-        if (data.restaurant && data.categories) {
-          setUploadStatus(`Menu for ${data.restaurant} uploaded successfully!`);
+        // Safeguard against undefined 'categories'
+        if (data.categories && Object.keys(data.categories).length > 0) {
+          const formattedCategories: Category[] = Object.keys(
+            data.categories || {},
+          ).map((key) => ({
+            name: key,
+            dishes: data.categories?.[key] || [], // Safely access 'key'
+          }));
 
-          const allDishes = Object.values(data.categories).flat();
-
-          setDishes(allDishes);
+          setDishes(formattedCategories);
         } else {
-          console.error("Unexpected response structure:", data);
+          console.warn("No categories found in the API response");
+          setDishes([]); // Clear dishes if no categories
         }
       } else {
         console.error("Image upload failed:", await res.text());
@@ -109,12 +109,27 @@ export default function MenuScanner() {
 
   const handleManualDishesAdd = () => {
     if (manualDishes.trim()) {
-      const newDishes = manualDishes
+      const newDishEntries = manualDishes
         .split("\n")
-        .filter((dish) => dish.trim() !== "")
+        .filter((dish) => dish.trim())
         .map((dish) => ({ name: dish.trim(), price: null }));
 
-      setDishes([...dishes, ...newDishes]);
+      const manualCategoryIndex = dishes.findIndex(
+        (category) => category.name === "Manual Entry",
+      );
+
+      const updatedDishes = [...dishes];
+
+      if (manualCategoryIndex >= 0) {
+        updatedDishes[manualCategoryIndex].dishes.push(...newDishEntries);
+      } else {
+        updatedDishes.push({
+          name: "Manual Entry",
+          dishes: newDishEntries,
+        });
+      }
+
+      setDishes(updatedDishes);
       setManualDishes("");
     }
   };
@@ -124,12 +139,16 @@ export default function MenuScanner() {
 
     setIsLoading(true);
     try {
+      const allDishNames = dishes.flatMap((category) =>
+        category.dishes.map((dish) => dish.name),
+      );
+
       const response = await fetch("/api/recommend", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ dishes: dishes.map((dish) => dish.name) }),
+        body: JSON.stringify({ dishes: allDishNames }),
       });
 
       if (!response.ok) {
@@ -138,7 +157,7 @@ export default function MenuScanner() {
 
       const data: RecommendationWrapper[] = await response.json();
 
-      console.log("Recommendations response:", data);
+      // console.log("Recommendations response:", data);
       setRecommendations(data);
     } catch (error) {
       console.error("Error getting recommendations:", error);
@@ -235,17 +254,28 @@ export default function MenuScanner() {
                 <h2 className="text-2xl font-semibold">Your Menu</h2>
               </CardHeader>
               <CardBody>
-                <ul className="space-y-2">
-                  {dishes.map((dish, index) => (
-                    <li
-                      key={index}
-                      className="flex justify-between items-center"
-                    >
-                      <span>{dish.name}</span>
-                      {dish.price !== null && (
-                        <span className="text-gray-500">
-                          ${dish.price.toFixed(2)}
-                        </span>
+                <ul className="space-y-4">
+                  {dishes.map((category, categoryIndex) => (
+                    <li key={categoryIndex} className="mb-4">
+                      <h3 className="font-semibold">{category.name}</h3>
+                      {category.dishes.length > 0 ? (
+                        <ul className="space-y-2">
+                          {category.dishes.map((dish, dishIndex) => (
+                            <li
+                              key={`${categoryIndex}-${dishIndex}`}
+                              className="flex justify-between items-center"
+                            >
+                              <span>{dish.name}</span>
+                              {dish.price !== null && (
+                                <span className="text-gray-500">
+                                  ${dish.price.toFixed(2)}
+                                </span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-gray-500">No dishes available</p>
                       )}
                     </li>
                   ))}
@@ -280,7 +310,6 @@ export default function MenuScanner() {
                     <div className="space-y-4">
                       {rec.recommendations.top_wine_pairings.map(
                         (wine, wineIndex) => {
-                          // Determine the color class based on wine.color
                           const wineColorClass =
                             wine.color === "Red"
                               ? "text-red-600"
@@ -288,7 +317,7 @@ export default function MenuScanner() {
                                 ? "text-yellow-600"
                                 : wine.color === "Rose"
                                   ? "text-pink-600"
-                                  : "text-gray-600"; // Default color if not matched
+                                  : "text-gray-600";
 
                           return (
                             <div

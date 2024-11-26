@@ -53,6 +53,8 @@ interface RecommendationWrapper {
 export default function MenuScanner() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dishes, setDishes] = useState<MenuItem[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [uploadStatus, setUploadStatus] = useState("");
   const [manualDishes, setManualDishes] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [recommendations, setRecommendations] = useState<
@@ -76,7 +78,7 @@ export default function MenuScanner() {
 
       formData.append("image", selectedFile);
 
-      const res = await fetch("https://api.vinair.tech/upload", {
+      const res = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
@@ -86,22 +88,17 @@ export default function MenuScanner() {
 
         console.log("API Response:", data);
 
-        if (data.categories) {
-          const allDishes = Object.values(data.categories)
-            .filter((category) => category && category.dishes?.length > 0) // Ensure categories and dishes exist
-            .flatMap((category) =>
-              category.dishes.map((dish) => ({
-                name: dish.name || "Unknown Dish",
-                price: dish.price || null,
-              })),
-            );
+        if (data.restaurant && data.categories) {
+          setUploadStatus(`Menu for ${data.restaurant} uploaded successfully!`);
+
+          const allDishes = Object.values(data.categories).flat();
 
           setDishes(allDishes);
         } else {
           console.error("Unexpected response structure:", data);
         }
       } else {
-        console.error("Image upload failed");
+        console.error("Image upload failed:", await res.text());
       }
     } catch (error) {
       console.error("Error:", error);
@@ -127,7 +124,7 @@ export default function MenuScanner() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("https://api.vinair.tech/recommend", {
+      const response = await fetch("/api/recommend", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -254,7 +251,7 @@ export default function MenuScanner() {
                   ))}
                 </ul>
                 <Button
-                  className="w-full mt-4"
+                  className="w-full mt-4 text-white"
                   color="primary"
                   disabled={isLoading}
                   onPress={handleGetRecommendations}
@@ -282,22 +279,34 @@ export default function MenuScanner() {
                     </h3>
                     <div className="space-y-4">
                       {rec.recommendations.top_wine_pairings.map(
-                        (wine, wineIndex) => (
-                          <div
-                            key={wineIndex}
-                            className="flex items-center space-x-4"
-                          >
-                            <Wine className="text-purple-600" />
-                            <div>
-                              <p className="font-medium">
-                                {wine.wine_recommendation}
-                              </p>
-                              <p className="text-sm text-gray-500">
-                                {wine.type} • {wine.color} • {wine.country}
-                              </p>
+                        (wine, wineIndex) => {
+                          // Determine the color class based on wine.color
+                          const wineColorClass =
+                            wine.color === "Red"
+                              ? "text-red-600"
+                              : wine.color === "White"
+                                ? "text-yellow-600"
+                                : wine.color === "Rose"
+                                  ? "text-pink-600"
+                                  : "text-gray-600"; // Default color if not matched
+
+                          return (
+                            <div
+                              key={wineIndex}
+                              className="flex items-center space-x-4"
+                            >
+                              <Wine className={wineColorClass} />
+                              <div>
+                                <p className="font-medium">
+                                  {wine.wine_recommendation}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  {wine.type} • {wine.color} • {wine.country}
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                        ),
+                          );
+                        },
                       )}
                     </div>
                   </div>

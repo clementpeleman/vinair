@@ -51,7 +51,7 @@ export default function Hero() {
               radius: "full",
               variant: "shadow",
             })}
-            href={isLoggedIn ? "https://try.vinair.tech" : "/register"} // Wijzig hier de link
+            href={isLoggedIn ? "/scanner" : "/register"} // Wijzig hier de link
           >
             {isLoggedIn ? "Try Now" : "Get Started"}
           </Link>

@@ -86,10 +86,15 @@ export default function MenuScanner() {
 
         console.log("API Response:", data);
 
-        if (data.restaurant && data.categories) {
-          const allDishes = Object.values(data.categories).flatMap(
-            (category) => category.dishes,
-          );
+        if (data.categories) {
+          const allDishes = Object.values(data.categories)
+            .filter((category) => category && category.dishes?.length > 0) // Ensure categories and dishes exist
+            .flatMap((category) =>
+              category.dishes.map((dish) => ({
+                name: dish.name || "Unknown Dish",
+                price: dish.price || null,
+              })),
+            );
 
           setDishes(allDishes);
         } else {
@@ -198,10 +203,7 @@ export default function MenuScanner() {
                         type="submit"
                       >
                         {isLoading ? (
-                          <>
-                            <Loader className="mr-2 h-4 w-4 animate-spin" />
-                            Analyzing...
-                          </>
+                          <Loader className="mr-2 h-4 w-4 animate-spin" />
                         ) : (
                           "Analyze Menu"
                         )}
@@ -243,7 +245,7 @@ export default function MenuScanner() {
                       className="flex justify-between items-center"
                     >
                       <span>{dish.name}</span>
-                      {dish.price && (
+                      {dish.price !== null && (
                         <span className="text-gray-500">
                           ${dish.price.toFixed(2)}
                         </span>
@@ -258,10 +260,7 @@ export default function MenuScanner() {
                   onPress={handleGetRecommendations}
                 >
                   {isLoading ? (
-                    <>
-                      <Loader className="mr-2 h-4 w-4 animate-spin" />
-                      Getting Recommendations...
-                    </>
+                    <Loader className="mr-2 h-4 w-4 animate-spin" />
                   ) : (
                     "Get Wine Recommendations"
                   )}

@@ -165,7 +165,7 @@ export default function SecFeatures() {
             radius="lg"
             size="lg"
             variant="flat"
-            href={isLoggedIn ? "/menu-scanner" : "/register"}
+            href={isLoggedIn ? "/scanner" : "/register"}
           >
             {isLoggedIn ? "GET PAIRINGS" : "REGISTER NOW"}
           </Button>

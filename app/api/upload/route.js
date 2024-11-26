@@ -9,11 +9,7 @@ const anthropic = new Anthropic({
   apiKey: process.env.CLAUDE_API_KEY,
 });
 
-export const config = {
-  api: {
-    bodyParser: false, // Disable bodyParser for file uploads
-  },
-};
+export const runtime = "nodejs";
 
 export async function POST(req) {
   const form = await req.formData();

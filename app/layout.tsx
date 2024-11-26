@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 
+import { AuthProvider } from "@/utils/authcontext";
 import { siteConfig } from "@/config/site";
 import { fontMundo, fontMilo, fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
@@ -43,13 +44,13 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <Navbar />
-          <main className=" mx-auto w-full pt-16 flex-grow">
-            {children}
-          </main>
-          {/* <footer className="w-full italic text-default flex items-center justify-center py-3">
-            Vinair © 2024
-          </footer> */}
+          <AuthProvider>
+            <Navbar />
+            <main className=" mx-auto w-full pt-16 flex-grow">{children}</main>
+            {/* <footer className="w-full italic text-default flex items-center justify-center py-3">
+              Vinair © 2024
+            </footer> */}
+          </AuthProvider>
         </Providers>
       </body>
     </html>

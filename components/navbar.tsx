@@ -25,6 +25,20 @@ import { Logo } from "./Icons";
 import { supabase } from "@/lib/supabase";
 import { siteConfig } from "@/config/site";
 
+const hexToUint8Array = (hexString: string): Uint8Array => {
+  // Verwijder de "\x" prefix als deze aanwezig is
+  const cleanHex = hexString.startsWith("\\x") ? hexString.slice(2) : hexString;
+
+  // Split de hex-string in paren van twee (elke byte)
+  const bytes = [];
+  for (let i = 0; i < cleanHex.length; i += 2) {
+    bytes.push(parseInt(cleanHex.substr(i, 2), 16));
+  }
+
+  return new Uint8Array(bytes);
+};
+
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -68,8 +82,9 @@ export default function App() {
           }
 
           if (data?.avatar_blob) {
-            // Converteer de binary blob naar een URL
-            const blob = new Blob([new Uint8Array(data.avatar_blob)]);
+            const binaryData = hexToUint8Array(data.avatar_blob);
+
+            const blob = new Blob([binaryData]);
             const url = URL.createObjectURL(blob);
 
             setAvatarUrl(url);

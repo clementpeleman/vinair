@@ -28,6 +28,7 @@ import { siteConfig } from "@/config/site";
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null); // Voor de avatar-URL
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -35,12 +36,42 @@ export default function App() {
 
       if (error) {
         console.error("Error fetching session:", error.message);
-
         return;
       }
 
-      setIsLoggedIn(!!session?.session?.user);
+      const isUserLoggedIn = !!session?.session?.user;
+      setIsLoggedIn(isUserLoggedIn);
       setUserEmail(session?.session?.user?.email || null);
+
+      if (isUserLoggedIn && session?.session?.user?.id) {
+        fetchAvatar(session.session.user.id);
+      }
+    };
+
+    const fetchAvatar = async (userId: string) => {
+      try {
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("avatar_blob") // Haal de blob of afbeelding op
+          .eq("id", userId)
+          .single();
+
+        if (error) {
+          console.error("Error fetching avatar:", error.message);
+          return;
+        }
+
+        if (data?.avatar_blob) {
+          // Converteer de binary blob naar een URL
+          const blob = new Blob([new Uint8Array(data.avatar_blob)]);
+          const url = URL.createObjectURL(blob);
+          setAvatarUrl(url);
+        } else {
+          console.warn("No avatar_blob found for user");
+        }
+      } catch (error) {
+        console.error("Unexpected error fetching avatar:", error);
+      }
     };
 
     fetchSession();
@@ -48,8 +79,13 @@ export default function App() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_, session) => {
-      setIsLoggedIn(!!session?.user);
+      const isUserLoggedIn = !!session?.user;
+      setIsLoggedIn(isUserLoggedIn);
       setUserEmail(session?.user?.email || null);
+
+      if (isUserLoggedIn && session?.user?.id) {
+        fetchAvatar(session.user.id);
+      }
     });
 
     return () => {
@@ -66,9 +102,9 @@ export default function App() {
       } else {
         setIsLoggedIn(false);
         setUserEmail(null);
+        setAvatarUrl(null);
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("Unexpected error during logout:", err);
       alert("An unexpected error occurred. Please try again.");
     }
@@ -122,7 +158,7 @@ export default function App() {
                 color="default"
                 name="User Avatar"
                 size="md"
-                src={`https://avatar.iran.liara.run/username?username=${userEmail}`}
+                src={avatarUrl}                 // Gebruik avatar uit de database of fallback-URL
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -167,7 +203,7 @@ export default function App() {
           <NavbarMenuItem key={index}>
             <Link
               className="w-full"
-              color={pathname === item.href ? "primary" : "foreground"} // Huidige tab krijgt de primary kleur
+              color={pathname === item.href ? "primary" : "foreground"}
               href={item.href}
               onClick={() => {
                 setIsMenuOpen(false); // Sluit het menu

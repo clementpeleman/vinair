@@ -36,10 +36,12 @@ export default function App() {
 
       if (error) {
         console.error("Error fetching session:", error.message);
+
         return;
       }
 
       const isUserLoggedIn = !!session?.session?.user;
+
       setIsLoggedIn(isUserLoggedIn);
       setUserEmail(session?.session?.user?.email || null);
 
@@ -49,28 +51,34 @@ export default function App() {
     };
 
     const fetchAvatar = async (userId: string) => {
-      try {
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("avatar_blob") // Haal de blob of afbeelding op
-          .eq("id", userId)
-          .single();
+      if (avatarUrl) {
+        return;
+      } else {
+        try {
+          const { data, error } = await supabase
+            .from("profiles")
+            .select("avatar_blob") // Haal de blob of afbeelding op
+            .eq("id", userId)
+            .single();
 
-        if (error) {
-          console.error("Error fetching avatar:", error.message);
-          return;
-        }
+          if (error) {
+            console.error("Error fetching avatar:", error.message);
 
-        if (data?.avatar_blob) {
-          // Converteer de binary blob naar een URL
-          const blob = new Blob([new Uint8Array(data.avatar_blob)]);
-          const url = URL.createObjectURL(blob);
-          setAvatarUrl(url);
-        } else {
-          console.warn("No avatar_blob found for user");
+            return;
+          }
+
+          if (data?.avatar_blob) {
+            // Converteer de binary blob naar een URL
+            const blob = new Blob([new Uint8Array(data.avatar_blob)]);
+            const url = URL.createObjectURL(blob);
+
+            setAvatarUrl(url);
+          } else {
+            console.warn("No avatar_blob found for user");
+          }
+        } catch (error) {
+          console.error("Unexpected error fetching avatar:", error);
         }
-      } catch (error) {
-        console.error("Unexpected error fetching avatar:", error);
       }
     };
 
@@ -80,6 +88,7 @@ export default function App() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_, session) => {
       const isUserLoggedIn = !!session?.user;
+
       setIsLoggedIn(isUserLoggedIn);
       setUserEmail(session?.user?.email || null);
 
@@ -158,7 +167,7 @@ export default function App() {
                 color="default"
                 name="User Avatar"
                 size="md"
-                src={avatarUrl || ''}                 // Gebruik avatar uit de database of fallback-URL
+                src={avatarUrl || ""} // Gebruik avatar uit de database of fallback-URL
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">

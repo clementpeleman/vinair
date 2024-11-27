@@ -52,20 +52,21 @@ export default function App() {
       try {
         const { data, error } = await supabase
           .from("profiles")
-          .select("avatar_blob") // Haal de blob of afbeelding op
+          .select("avatar_blob")
           .eq("id", userId)
           .single();
-
+    
         if (error) {
           console.error("Error fetching avatar:", error.message);
           return;
         }
-
+    
         if (data?.avatar_blob) {
-          // Converteer de binary blob naar een URL
-          const blob = new Blob([new Uint8Array(data.avatar_blob)]);
-          const url = URL.createObjectURL(blob);
-          setAvatarUrl(url);
+          // Convert Uint8Array to Base64
+          const base64String = btoa(String.fromCharCode(...data.avatar_blob));
+          const base64Url = `data:image/png;base64,${base64String}`;
+          setAvatarUrl(base64Url); // Set the Base64 string in the state
+          console.log(avatarUrl)
         } else {
           console.warn("No avatar_blob found for user");
         }
@@ -158,7 +159,7 @@ export default function App() {
                 color="default"
                 name="User Avatar"
                 size="md"
-                src={avatarUrl}                 // Gebruik avatar uit de database of fallback-URL
+                src={avatarUrl || ''}                 // Gebruik avatar uit de database of fallback-URL
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">

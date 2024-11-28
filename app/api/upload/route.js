@@ -49,7 +49,7 @@ export async function POST(req) {
               type: "text",
               text: `This is a restaurant menu. 
               Return only a JSON object with the name of the restaurant (if present in the image, else "Restaurant") and the different categories of dishes. 
-              Don't use full uppercase. Only capital letter. If no price is available, write "null".
+              Don't use full uppercase. Only capital letter. If no price is available, write "null". Try to narrow down the dish names to common dishes and don't mention irrelevant ingredients in the dish name.
               Template:
               {
               "restaurant": "<restaurant_name>",
@@ -71,7 +71,7 @@ export async function POST(req) {
                 ...
               }
             }
-              Limit the categories to "starters", "main dishes", "desserts".`,
+              Limit the categories to "Starters", "Main dishes", "Desserts".`,
             },
             {
               type: "image",

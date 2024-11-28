@@ -12,6 +12,7 @@ import {
 import { Tabs, Tab } from "@nextui-org/react";
 import { Loader, Wine, Upload } from "lucide-react";
 import Image from "next/image";
+import imageCompression from "browser-image-compression";
 
 import { ProtectedRoute } from "@/utils/authcontext";
 
@@ -69,9 +70,18 @@ export default function MenuScanner() {
     setIsLoading(true);
 
     try {
+      // Stap 1: Compress de afbeelding
+      const options = {
+        maxSizeMB: 1, // Maximaal 1 MB
+        maxWidthOrHeight: 2048, // Max breedte of hoogte
+        useWebWorker: true, // Gebruik een web worker voor betere prestaties
+      };
+
+      const compressedFile = await imageCompression(selectedFile, options);
+
       const formData = new FormData();
 
-      formData.append("image", selectedFile);
+      formData.append("image", compressedFile); // Gebruik de gecomprimeerde afbeelding
 
       const res = await fetch("/api/upload", {
         method: "POST",

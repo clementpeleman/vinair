@@ -25,20 +25,6 @@ import { Logo } from "./Icons";
 import { supabase } from "@/lib/supabase";
 import { siteConfig } from "@/config/site";
 
-const hexToUint8Array = (hexString: string): Uint8Array => {
-  // Verwijder de "\x" prefix als deze aanwezig is
-  const cleanHex = hexString.startsWith("\\x") ? hexString.slice(2) : hexString;
-
-  // Split de hex-string in paren van twee (elke byte)
-  const bytes = [];
-  for (let i = 0; i < cleanHex.length; i += 2) {
-    bytes.push(parseInt(cleanHex.substr(i, 2), 16));
-  }
-
-  return new Uint8Array(bytes);
-};
-
-
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -65,35 +51,21 @@ export default function App() {
     };
 
     const fetchAvatar = async (userId: string) => {
-      if (avatarUrl) {
-        return;
-      } else {
-        try {
-          const { data, error } = await supabase
-            .from("profiles")
-            .select("avatar_blob") // Haal de blob of afbeelding op
-            .eq("id", userId)
-            .single();
+      try {
+        // Verkrijg de publieke URL van de avatar uit de bucket
+        const { data } = supabase.storage
+          .from("avatar") // Vervang "avatar" door de naam van je bucket
+          .getPublicUrl(`public/${userId}.png`);
 
-          if (error) {
-            console.error("Error fetching avatar:", error.message);
-
-            return;
-          }
-
-          if (data?.avatar_blob) {
-            const binaryData = hexToUint8Array(data.avatar_blob);
-
-            const blob = new Blob([binaryData]);
-            const url = URL.createObjectURL(blob);
-
-            setAvatarUrl(url);
-          } else {
-            console.warn("No avatar_blob found for user");
-          }
-        } catch (error) {
-          console.error("Unexpected error fetching avatar:", error);
+        if (data?.publicUrl) {
+          setAvatarUrl(data.publicUrl); // Stel de avatar-URL in
+        } else {
+          console.warn("Avatar not found in storage bucket");
+          setAvatarUrl("/default-avatar.png"); // Fallback naar een standaard avatar
         }
+      } catch (error) {
+        console.error("Error fetching avatar from storage bucket:", error);
+        setAvatarUrl("/default-avatar.png"); // Fallback naar een standaard avatar
       }
     };
 

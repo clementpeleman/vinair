@@ -5,7 +5,7 @@ import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
 
-import { registerUserWithAvatarBlob } from "@/lib/authService";
+import { registerUserWithAvatarStorage } from "@/lib/authService";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ export default function RegisterPage() {
     setLoading(true);
     setError(null);
 
-    const result = await registerUserWithAvatarBlob({ email, password });
+    const result = await registerUserWithAvatarStorage({ email, password });
 
     if (result.success) {
       router.push("/login");

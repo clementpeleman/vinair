@@ -50,7 +50,7 @@ export const register = async (credentials: {
   }
 };
 
-export const registerUserWithAvatarBlob = async (credentials: {
+export const registerUserWithAvatarStorage = async (credentials: {
   email: string;
   password: string;
 }) => {
@@ -67,40 +67,35 @@ export const registerUserWithAvatarBlob = async (credentials: {
 
     if (!user) throw new Error("Registration failed: No user data returned.");
 
-    // Stap 2: Log de gebruiker in (zorg dat er een actieve sessie is)
-    const { error: loginError } = await supabase.auth.signInWithPassword({
-      email: credentials.email,
-      password: credentials.password,
-    });
-
-    if (loginError)
-      throw new Error(`Login failed after registration: ${loginError.message}`);
-
     // Stap 3: Genereer de avatar-URL op basis van het e-mailadres
     const avatarUrl = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
-      credentials.email,
+      credentials.email
     )}`;
 
-    // Stap 4: Download de afbeelding als blob
+    // Stap 4: Download de afbeelding als bestand
     const response = await fetch(avatarUrl); // Ophalen van de afbeelding
 
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch avatar from URL: ${response.statusText}`,
+        `Failed to fetch avatar from URL: ${response.statusText}`
       );
     }
 
-    const avatarBlob = await response.arrayBuffer(); // Lees het bestand als ArrayBuffer
-    const avatarUint8Array = new Uint8Array(avatarBlob); // Converteer naar Uint8Array
+    // Lees het bestand als een buffer of blob (afhankelijk van de implementatie)
+    const avatarArrayBuffer = await response.arrayBuffer(); // Optie 1: ArrayBuffer
+    const avatarFile = new File([avatarArrayBuffer], `${user.id}.png`, {
+      type: "image/png",
+    }); // Optie 2: Direct File object
 
-    // Stap 5: Voeg een profiel toe aan de 'profiles' tabel
-    const { error: profileError } = await supabase.from("profiles").insert({
-      id: user.id, // ID moet overeenkomen met de gebruiker in auth.users
-      avatar_blob: avatarUint8Array, // Sla de afbeelding op als blob
-    });
+    // Stap 5: Upload de afbeelding naar Supabase Storage
+    const { error: uploadError } = await supabase.storage
+      .from("avatar") // Zorg ervoor dat de bucket 'avatar' bestaat
+      .upload(`public/${user.id}.png`, avatarFile, {
+        contentType: "image/png", // Stel het juiste content-type in
+      });
 
-    if (profileError)
-      throw new Error(`Profile creation failed: ${profileError.message}`);
+    if (uploadError)
+      throw new Error(`Avatar upload failed: ${uploadError.message}`);
 
     return { success: true, user };
   } catch (error: any) {

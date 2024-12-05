@@ -178,7 +178,7 @@ export default function MenuScanner() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen py-36 px-4 sm:px-6 lg:px-8">
+      <div className="py-36 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <header className="text-center mb-12">
             <h1 className="text-4xl font-milo text-gray-900 mb-4">

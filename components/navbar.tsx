@@ -22,6 +22,7 @@ import { usePathname } from "next/navigation";
 
 import { Logo } from "./Icons";
 
+import useSessionTimeout from "@/lib/useSessionTimeout";
 import { supabase } from "@/lib/supabase";
 import { siteConfig } from "@/config/site";
 
@@ -105,6 +106,8 @@ export default function App() {
       alert("An unexpected error occurred. Please try again.");
     }
   };
+
+  useSessionTimeout();
 
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

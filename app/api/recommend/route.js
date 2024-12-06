@@ -75,7 +75,7 @@ async function translateDishesClaude(dishes) {
       throw new Error("No dishes provided for translation.");
     }
 
-    const prompt = `Translate each of the following dishes to English. Keep it simple and use known dish names. If there is no direct English substitution, use the original dish name. Only provide the translations in order, one per line:
+    const prompt = `Translate each of the following dishes to English. Keep it simple and use known dish names. If there is no direct English substitution, use the original dish name. Only provide the translations in order, one per line. Only provide one single name per input dish:
 
 ${dishes.join("\n")}`;
 

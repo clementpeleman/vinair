@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Vinair",
-  description: "Find your perfect wine pairing",
+  description: "Match your exisiting menu with the perfect wine.",
   navItems: [
     {
       label: "Features",

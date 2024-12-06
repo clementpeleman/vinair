@@ -22,7 +22,7 @@ import { usePathname } from "next/navigation";
 
 import { Logo } from "./Icons";
 
-import useSessionTimeout from "@/lib/useSessionTimeout";
+import useSessionTimeout from "@/hooks/useSessionTimeout";
 import { supabase } from "@/lib/supabase";
 import { siteConfig } from "@/config/site";
 

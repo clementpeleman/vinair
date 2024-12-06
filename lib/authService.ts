@@ -68,7 +68,7 @@ export const registerUserWithAvatarStorage = async (credentials: {
     if (!user) throw new Error("Registration failed: No user data returned.");
 
     // Stap 3: Genereer de avatar-URL op basis van het e-mailadres
-    const avatarUrl = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
+    const avatarUrl = `https://api.dicebear.com/9.x/thumbs/svg?seed=${encodeURIComponent(
       credentials.email
     )}`;
 

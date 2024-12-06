@@ -81,17 +81,14 @@ export const registerUserWithAvatarStorage = async (credentials: {
       );
     }
 
-    // Lees het bestand als een buffer of blob (afhankelijk van de implementatie)
-    const avatarArrayBuffer = await response.arrayBuffer(); // Optie 1: ArrayBuffer
-    const avatarFile = new File([avatarArrayBuffer], `${user.id}.svg`, {
-      type: "image/svg",
-    }); // Optie 2: Direct File object
+    // Lees het bestand als een blob
+    const avatarBlob = await response.blob(); // Gebruik blob in plaats van arrayBuffer
 
     // Stap 5: Upload de afbeelding naar Supabase Storage
     const { error: uploadError } = await supabase.storage
       .from("avatar") // Zorg ervoor dat de bucket 'avatar' bestaat
-      .upload(`public/${user.id}.svg`, avatarFile, {
-        contentType: "image/svg", // Stel het juiste content-type in
+      .upload(`public/${user.id}.svg`, avatarBlob, { // Gebruik blob hier
+        contentType: "image/svg+xml", // Zorg ervoor dat het juiste content-type is ingesteld
       });
 
     if (uploadError)

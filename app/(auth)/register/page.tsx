@@ -21,7 +21,7 @@ export default function RegisterPage() {
     const result = await registerUserWithAvatarStorage({ email, password });
 
     if (result.success) {
-      router.push("/login");
+      router.push("/");
     } else {
       setError(result.error || "An unknown error occurred.");
     }

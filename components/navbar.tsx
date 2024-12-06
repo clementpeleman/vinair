@@ -56,7 +56,7 @@ export default function App() {
         // Verkrijg de publieke URL van de avatar uit de bucket
         const { data } = supabase.storage
           .from("avatar") // Vervang "avatar" door de naam van je bucket
-          .getPublicUrl(`public/${userId}.png`);
+          .getPublicUrl(`public/${userId}.svg`);
 
         if (data?.publicUrl) {
           setAvatarUrl(data.publicUrl); // Stel de avatar-URL in

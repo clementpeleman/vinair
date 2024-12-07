@@ -4,7 +4,7 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="container mx-auto">
+    <section className="container max-w-5xl mx-auto">
       {children}
     </section>
   );

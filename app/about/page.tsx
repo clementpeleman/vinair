@@ -40,10 +40,10 @@ const AboutPage = () => {
       {/* Team Section */}
       <section className="w-full rounded-lg py-4 md:py-12 lg:py-12">
         <div className="container px-4 md:px-6">
-          <h2 className={title({ size: "md", class: "text-center" })}>
+          <h2 className={title({ size: "sm", class: "text-center" })}>
             Meet Our Team
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 mt-48 mb-12">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 mt-12 md:mt-32">
             {[
               {
                 name: "Mona Sommelier",
@@ -78,33 +78,33 @@ const AboutPage = () => {
       </section>
 
       {/* Mission and Values Section */}
-      <section className="w-full rounded-lg py-12 md:py-24 lg:py-24 mt-12">
+      <section className="w-full rounded-lg py-12 md:py-24 lg:py-24 mt-6">
         <div className="container px-4 md:px-6 ">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-3">
-            <div className="flex flex-col  space-y-4">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-12 xl:grid-cols-3">
+            <div className="flex flex-col space-y-4">
               <h2
                 className={title({
-                  size: "md",
+                  size: "sm",
                 })}
               >
-                Mission
+                <span className="text-primary">1. </span>Mission
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-justify">
                 At VinAir, we&apos;re on a mission to revolutionize the dining
                 experience by making expert wine pairing accessible to everyone.
                 We believe that the right wine can elevate any meal from
                 ordinary to extraordinary.
               </p>
             </div>
-            <div className="flex flex-col ml-12 justify-start space-y-4">
+            <div className="flex flex-col mb-2 sm:-mb-0 justify-self-end sm:justify-self-auto sm:ml-8 justify-end sm:justify-start space-y-4">
               <h2
                 className={title({
-                  size: "md",
+                  size: "sm",
                 })}
               >
-                <span className="text-primary">Values</span>
+                <span className="text-primary">2. </span>Values
               </h2>
-              <ul className="list-decimal list-inside text-muted-foreground">
+              <ul className="list-decimal list-inside text-muted-foreground ">
                 <li>Innovation in gastronomy</li>
                 <li>Accessibility of expert knowledge</li>
                 <li>Enhancing culinary experiences</li>
@@ -114,13 +114,13 @@ const AboutPage = () => {
             <div className="flex flex-col justify-start space-y-4">
               <h2
                 className={title({
-                  size: "md",
+                  size: "sm",
                 })}
               >
                 {" "}
-                Vision
+                <span className="text-primary">3. </span>Vision
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-justify">
                 We envision a world where every dining table becomes a stage for
                 culinary excellence, where the perfect harmony between food and
                 wine is achieved with just a simple scan.
@@ -133,10 +133,10 @@ const AboutPage = () => {
       {/* Timeline Section */}
       <section className="w-full rounded-t-lg pt-8 pb-12 md:pb-24 lg:pb-32 mt-24 bg-muted">
         <div className="container px-4 md:px-6">
-          <h2 className={title({ size: "md", class: "text-center mb-12" })}>
+          <h2 className={title({ size: "sm", class: "text-center" })}>
             Our Journey
           </h2>
-          <div className="flex flex-col items-center space-y-8">
+          <div className="flex flex-col items-start sm:items-center space-y-8 mt-8">
             {[
               {
                 year: "Jul 2022",
@@ -156,7 +156,7 @@ const AboutPage = () => {
                   "Developing workflow with a combination of in-house and outsourced development",
               },
             ].map((item, index) => (
-              <div key={index} className="flex min-w-[550px] max-w-[560px]">
+              <div key={index} className="flex md:min-w-[550px] max-w-[560px]">
                 <div className="flex flex-col items-center mr-4">
                   <div className="flex items-center justify-center text-white w-8 h-8 rounded-full bg-primary">
                     {index + 1}
@@ -180,8 +180,8 @@ const AboutPage = () => {
             <div className="space-y-2">
               <h2
                 className={title({
-                  size: "lg",
-                  class: "text-primary-foreground",
+                  size: "md",
+                  class: "text-foreground",
                 })}
               >
                 Ready to elevate your dining experience?
@@ -191,8 +191,7 @@ const AboutPage = () => {
                   class: "max-w-[700px] mx-auto text-white",
                 })}
               >
-                Join VinAir today and discover the perfect wine pairing for
-                every meal.
+                Join VinAir today
               </p>
             </div>
             <div>

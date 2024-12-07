@@ -36,14 +36,14 @@ export default function Hero() {
           <span className={title({ size: "lg" })}>
             -food pairings to the ordinary table
           </span>
-          <div className={subtitle({ class: "mt-4" })}>
+          <div className={subtitle({ class: "mt-2" })}>
             Order specifically selected wine to complement
             <br />
             your dishes or suggestions
           </div>
         </div>
 
-        <div className="flex gap-3 text-white">
+        <div className="flex gap-3 text-white mt-4">
           <Link
             className={buttonStyles({
               size: "lg",
@@ -67,12 +67,12 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-      <div className="relative w-full max-w-[700px] lg:w-2/3 h-[60vh] mt-[-2vh] lg:mt-[-10vh]">
+      <div className="relative w-full max-w-[700px] lg:w-2/3 h-[60vh] mt-[-2vh] lg:mt-[-13vh]">
         {" "}
         {/* Container voor de afbeelding */}
         <Image
           alt="Hero picture"
-          className="rounded-lg animate-pulseSaturation" // Optioneel: voeg afgeronde hoeken toe
+          className="" // Optioneel: voeg afgeronde hoeken toe
           layout="fill" // Vul de container
           objectFit="cover" // Zorg ervoor dat de afbeelding de container bedekt
           src="/pizza_wine.png"

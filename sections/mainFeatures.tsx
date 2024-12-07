@@ -6,7 +6,7 @@ import { subtitle } from "@/components/primitives";
 
 export default function Features() {
   return (
-    <section className="bg-[rgba(0,142,117,0.11)] min-h-[100vh] pb-32 z-10">
+    <section className="bg-[rgba(0,142,117,0.11)] min-h-[100vh] pb-48 z-10">
       <img
         alt="Arc Illustration"
         className="w-full h-auto object-top transform scale-y-[0.4] origin-top"

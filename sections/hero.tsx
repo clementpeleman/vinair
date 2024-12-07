@@ -30,10 +30,10 @@ export default function Hero() {
   return (
     <section className="container mx-auto max-w-7xl px-6 flex flex-col lg:flex-row items-center justify-between h-[85vh] gap-4 mb-24">
       <div className="flex-grow-2">
-        <div className="inline-block font-milo max-w-xl text-left justify-center lg:mt-[-12vh] mt-[4vh]">
-          <span className={title({ size: "lg" })}>We bring&nbsp;</span>
-          <span className={title({ color: "primary", size: "lg" })}>wine</span>
-          <span className={title({ size: "lg" })}>
+        <div className="inline-block max-w-xl text-left justify-center lg:mt-[-12vh] mt-[4vh]">
+          <span className={title({ size: "lg", class:"font-milo" })}>We bring&nbsp;</span>
+          <span className={title({ color: "primary", size: "lg", class:"font-milo" })}>wine</span>
+          <span className={title({ size: "lg", class:"font-milo" })}>
             -food pairings to the ordinary table
           </span>
           <div className={subtitle({ class: "mt-2" })}>

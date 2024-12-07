@@ -139,7 +139,7 @@ export default function SecFeatures() {
         </div>
       </div>
 
-      <div className="container py-16 bg-gray-50 rounded-xl mb-32 mx-auto w-[90vw] md:w-auto lg:max-w-[1200px]">
+      <div className="container py-16 mt-48 bg-gray-50 rounded-xl mb-32 mx-auto w-[90vw] md:w-auto lg:max-w-[1200px]">
         <div className="text-center">
           <p
             className={subtitle({

@@ -43,7 +43,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex gap-3 text-white mt-4">
+        <div className="flex gap-3 text-white mt-8">
           <Link
             className={buttonStyles({
               size: "lg",
@@ -67,7 +67,7 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-      <div className="relative w-full max-w-[700px] lg:w-2/3 h-[60vh] mt-[-2vh] lg:mt-[-13vh]">
+      <div className="relative w-full max-w-[700px] lg:w-2/3 h-[60vh] mt-[-2vh] lg:mt-[-14vh]">
         {" "}
         {/* Container voor de afbeelding */}
         <Image

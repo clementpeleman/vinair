@@ -89,7 +89,7 @@ const AboutPage = () => {
               >
                 <span className="text-primary">1. </span>Mission
               </h2>
-              <p className="text-muted-foreground text-justify">
+              <p className="text-muted-foreground">
                 At VinAir, we&apos;re on a mission to revolutionize the dining
                 experience by making expert wine pairing accessible to everyone.
                 We believe that the right wine can elevate any meal from
@@ -120,7 +120,7 @@ const AboutPage = () => {
                 {" "}
                 <span className="text-primary">3. </span>Vision
               </h2>
-              <p className="text-muted-foreground text-justify">
+              <p className="text-muted-foreground">
                 We envision a world where every dining table becomes a stage for
                 culinary excellence, where the perfect harmony between food and
                 wine is achieved with just a simple scan.

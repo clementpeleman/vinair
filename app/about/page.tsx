@@ -31,14 +31,54 @@ const AboutPage = () => {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="w-full pb-12 md:pb-24 mx-auto text-center lg:pb-32 xl:pb-48 bg-background">
+      <section className="w-full  mx-auto text-center bg-background">
         <p className={subtitle({ size: "md", class: "tracking-wider" })}>
           ABOUT
         </p>
       </section>
 
+      {/* Team Section */}
+      <section className="w-full rounded-lg py-4 md:py-12 lg:py-12">
+        <div className="container px-4 md:px-6">
+          <h2 className={title({ size: "md", class: "text-center" })}>
+            Meet Our Team
+          </h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 mt-48 mb-12">
+            {[
+              {
+                name: "Mona Sommelier",
+                role: "Chief Wine Officer",
+                image: "/monasommelier.svg",
+              },
+              {
+                name: "Clément Tech",
+                role: "Lead Developer",
+                image: "/clementtech.svg",
+              },
+            ].map((member) => (
+              <div
+                key={member.name}
+                className="flex flex-col items-center space-y-4"
+              >
+                <Image
+                  alt={member.name}
+                  className="rounded-full"
+                  height={200}
+                  src={member.image}
+                  width={200}
+                />
+                <div className="text-center">
+                  <h3 className="text-xl font-bold">{member.name}</h3>
+                  <p className="text-muted-foreground">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Mission and Values Section */}
-      <section className="w-full rounded-lg py-12 md:py-24 lg:py-24 bg-muted">
+      <section className="w-full rounded-lg py-12 md:py-24 lg:py-24 mt-12">
         <div className="container px-4 md:px-6 ">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-3">
             <div className="flex flex-col  space-y-4">
@@ -90,48 +130,8 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="w-full rounded-lg py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <h2 className={title({ size: "md", class: "text-center" })}>
-            Meet Our Team
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 mt-36 mb-12">
-            {[
-              {
-                name: "Mona Sommelier",
-                role: "Chief Wine Officer",
-                image: "/monasommelier.svg",
-              },
-              {
-                name: "Clément Tech",
-                role: "Lead Developer",
-                image: "/clementtech.svg",
-              },
-            ].map((member) => (
-              <div
-                key={member.name}
-                className="flex flex-col items-center space-y-4"
-              >
-                <Image
-                  alt={member.name}
-                  className="rounded-full"
-                  height={200}
-                  src={member.image}
-                  width={200}
-                />
-                <div className="text-center">
-                  <h3 className="text-xl font-bold">{member.name}</h3>
-                  <p className="text-muted-foreground">{member.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Timeline Section */}
-      <section className="w-full rounded-t-lg pt-8 pb-12 md:pb-24 lg:pb-32 bg-muted">
+      <section className="w-full rounded-t-lg pt-8 pb-12 md:pb-24 lg:pb-32 mt-24 bg-muted">
         <div className="container px-4 md:px-6">
           <h2 className={title({ size: "md", class: "text-center mb-12" })}>
             Our Journey

@@ -72,7 +72,7 @@ export default function Hero() {
         {/* Container voor de afbeelding */}
         <Image
           alt="Hero picture"
-          className="" // Optioneel: voeg afgeronde hoeken toe
+          className="rounded-lg sm:rounded-2xl" // Optioneel: voeg afgeronde hoeken toe
           layout="fill" // Vul de container
           objectFit="cover" // Zorg ervoor dat de afbeelding de container bedekt
           src="/pizza_wine.png"

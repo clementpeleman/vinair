@@ -4,9 +4,9 @@ import Image from "next/image";
 import { Link } from "@nextui-org/react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Button } from "@nextui-org/react";
 
 import { title, subtitle } from "@/components/primitives";
-import { Button } from "@nextui-org/react";
 import { RightArrowWithLine } from "@/components/Icons";
 import { supabase } from "@/lib/supabase";
 
@@ -33,16 +33,18 @@ const AboutPage = () => {
       {/* Hero Section */}
       <section className="w-full  mx-auto text-center bg-background">
         <p className={subtitle({ size: "md", class: "tracking-wider" })}>
-          ABOUT
+          ABOUT US
         </p>
       </section>
 
       {/* Team Section */}
-      <section className="w-full rounded-lg py-4 md:py-12 lg:py-12">
-        <div className="container px-4 md:px-6">
-          <h2 className={title({ size: "sm", class: "text-center" })}>
-            Meet Our Team
-          </h2>
+      <section className="w-full rounded-lg py-4 md:py-8 lg:py-8">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="sm:text-left">
+            <h2 className={title({ size: "sm", class: "text-center" })}>
+              Meet Our Team
+            </h2>
+          </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 mt-12 md:mt-32">
             {[
               {

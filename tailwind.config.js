@@ -95,7 +95,8 @@ module.exports = {
     themes: {
       light: {
         colors: {
-          primary: "#e54726",
+			primary: "#ee5830",
+        //   primary: "#e54726",
           deepPink: "#fd4b8b",
           deepBlue: "rgba(137, 121, 236)"
         }

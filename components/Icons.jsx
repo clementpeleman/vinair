@@ -224,13 +224,13 @@ export const Logo = ({ size = 36, width, height, ...props }) => (
   <svg
     fill="none"
     height={size || height}
-    viewBox="0 0 32 32"
+    viewBox="0 0 48 48"
     width={size || width}
     {...props}
   >
-    <g fill="currentColor" >
-      <path fill="currentColor" d="M 422.215169 52.992188 L 574.222331 52.992188 L 498.21875 187.312663 Z M 422.215169 52.992188 " transform="matrix(0.0805369,0,0,0.0743034,0,0)"/>
-      <path fill="currentColor" d="M 21.001628 52.992188 L 148.223958 52.992188 L 356.785156 473.617676 L 298.485026 592.008952 Z M 21.001628 52.992188 " transform="matrix(0.0805369,0,0,0.0743034,0,0)"/>
+    <g fill="black" >
+      <path d="M 422.215169 52.992188 L 574.222331 52.992188 L 498.21875 187.312663 Z M 422.215169 52.992188 " transform="matrix(0.0805369,0,0,0.0743034,0,0)"/>
+      <path d="M 21.001628 52.992188 L 148.223958 52.992188 L 356.785156 473.617676 L 298.485026 592.008952 Z M 21.001628 52.992188 " transform="matrix(0.0805369,0,0,0.0743034,0,0)"/>
     </g>
   </svg>
 );

@@ -28,7 +28,7 @@ export function ManualEntry({ onAdd }: ManualEntryProps) {
     <div className="space-y-4">
       <Textarea
         className="min-h-[200px] resize-none"
-        placeholder="Enter each dish on a new line, for example:&#13;&#10;Grilled Salmon&#13;&#10;Beef Tenderloin&#13;&#10;Mushroom Risotto"
+        placeholder="Enter each dish on a new line, for example:\nGrilled Salmon\nBeef Tenderloin\nMushroom Risotto"
         value={dishes}
         onChange={(e: { target: { value: SetStateAction<string> } }) =>
           setDishes(e.target.value)

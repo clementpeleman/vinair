@@ -75,7 +75,7 @@ export default function Hero() {
           className="rounded-lg sm:rounded-2xl" // Optioneel: voeg afgeronde hoeken toe
           layout="fill" // Vul de container
           objectFit="cover" // Zorg ervoor dat de afbeelding de container bedekt
-          src="/wine.jpg"
+          src="/pizza_wine.png"
         />
       </div>
     </section>

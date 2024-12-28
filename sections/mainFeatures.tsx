@@ -13,7 +13,7 @@ export default function Features() {
         src="/arc-cropped.svg"
       />
       <div className="flex justify-center flex-col md:flex-row items-center gap-8 mt-16 max-w-[850px] lg:max-w-[1050px] mx-auto">
-        <Card className="flex items-center shadow-none mx-6 md:mx-0 max-w-[480px] md:max-w-full md:w-1/2 rounded-[30px] transition-all duration-400 ease-in-out hover:saturate-150 hover:cursor-pointer">
+        <Card className="flex items-center shadow-none mx-6 md:mx-0 max-w-[480px] md:max-w-full md:w-1/2 rounded-[30px] transition-all duration-400 ease-in-out hover:saturate-125 hover:cursor-pointer">
           <Button
             as={Link}
             className="mt-12 bg-deepPink bg-opacity-10 text-deepPink"

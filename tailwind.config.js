@@ -10,6 +10,10 @@ module.exports = {
   ],
   theme: {
   	extend: {
+		saturate: {
+			125: '1.25',
+			75: '.75',
+		  },
   		boxShadow: {
   			custom: '0 0 15px rgba(0, 0, 0, 0.02), 0 0 15px rgba(0, 0, 0, 0.02)'
   		},

@@ -46,7 +46,8 @@ export default function Features() {
                 className="rounded-[50%_50%_30px_30px]" // Optioneel: voeg afgeronde hoeken toe
                 layout="fill" // Vul de container
                 objectFit="cover" // Zorg ervoor dat de afbeelding de container bedekt
-                src="/scan.jpg"
+                objectPosition="left" // Plaats de afbeelding naar links
+                src="/scan2.jpg"
               />
             </div>
           </CardFooter>

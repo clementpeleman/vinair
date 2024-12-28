@@ -229,8 +229,8 @@ export const Logo = ({ size = 36, width, height, ...props }) => (
     {...props}
   >
     <g id="Layer 1">
-      <path id="Vorm 1" fill-rule="evenodd" fill="currentColor" class="s0" d="m422.2 53h152l-76 134.3z"/>
-      <path id="Vorm 2" fill-rule="evenodd" fill="currentColor" class="s0" d="m21 53h127.2l208.6 420.6-58.3 118.4z"/>
+      <path id="Vorm 1" fillRule="evenodd" fill="currentColor" d="m422.2 53h152l-76 134.3z"/>
+      <path id="Vorm 2" fillRule="evenodd" fill="currentColor" d="m21 53h127.2l208.6 420.6-58.3 118.4z"/>
     </g>
   </svg>
 );

@@ -31,9 +31,19 @@ export default function Hero() {
     <section className="container mx-auto max-w-7xl px-6 flex flex-col lg:flex-row items-center justify-between h-[85vh] gap-4 mb-24">
       <div className="flex-grow-2">
         <div className="inline-block max-w-xl text-left justify-center lg:mt-[-12vh] mt-[4vh]">
-          <span className={title({ size: "lg", class:"font-milo" })}>We bring&nbsp;</span>
-          <span className={title({ color: "primary", size: "lg", class:"font-milo" })}>wine</span>
-          <span className={title({ size: "lg", class:"font-milo" })}>
+          <span className={title({ size: "lg", class: "font-milo" })}>
+            We bring&nbsp;
+          </span>
+          <span
+            className={title({
+              color: "primary",
+              size: "lg",
+              class: "font-milo",
+            })}
+          >
+            wine
+          </span>
+          <span className={title({ size: "lg", class: "font-milo" })}>
             -food pairings to the ordinary table
           </span>
           <div className={subtitle({ class: "mt-2" })}>
@@ -68,15 +78,15 @@ export default function Hero() {
         </div>
       </div>
       <div className="relative w-full max-w-[700px] lg:w-2/3 h-[60vh] mt-[-2vh] lg:mt-[-14vh]">
-        {" "}
         {/* Container voor de afbeelding */}
         <Image
           alt="Hero picture"
-          className="rounded-lg sm:rounded-2xl" // Optioneel: voeg afgeronde hoeken toe
-          layout="fill" // Vul de container
-          objectFit="cover" // Zorg ervoor dat de afbeelding de container bedekt
+          className="rounded-lg sm:rounded-2xl"
+          layout="fill"
+          objectFit="cover"
           src="/pizza_wine.png"
         />
+        {/* <div className="absolute inset-0 top-[600px] bg-gradient-to-b from-transparent to-white" /> */}
       </div>
     </section>
   );

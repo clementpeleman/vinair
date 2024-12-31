@@ -1,8 +1,15 @@
-import * as React from "react";
+/* eslint-disable prettier/prettier */
+import React from 'react';
 
-import { IconSvgProps } from "@/types";
+interface IconProps {
+  fill?: string; // Optional string for fill color
+  size?: number; // Optional number for size
+  height?: number; // Optional number for height
+  width?: number; // Optional number for width
+  [key: string]: any; // Allow other props
+}
 
-export const ChevronDown = ({ fill, size, height, width, ...props }) => {
+export const ChevronDown: React.FC<IconProps> = ({ fill, size, height, width, ...props }) => {
   return (
     <svg
       fill="none"
@@ -24,9 +31,7 @@ export const ChevronDown = ({ fill, size, height, width, ...props }) => {
   );
 };
 
-export const Lock = ({ fill, size, height, width, ...props }) => {
-  const color = fill;
-
+export const Lock: React.FC<IconProps> = ({ fill, size, height, width, ...props }) => {
   return (
     <svg
       height={size || height || 24}
@@ -39,7 +44,7 @@ export const Lock = ({ fill, size, height, width, ...props }) => {
         <path
           d="M9.121,6.653V4.5A4.561,4.561,0,0,0,0,4.484V6.653"
           fill="none"
-          stroke={color}
+          stroke={fill}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
@@ -49,7 +54,7 @@ export const Lock = ({ fill, size, height, width, ...props }) => {
         <path
           d="M.5,0V2.221"
           fill="none"
-          stroke={color}
+          stroke={fill}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
@@ -59,7 +64,7 @@ export const Lock = ({ fill, size, height, width, ...props }) => {
         <path
           d="M7.66,0C1.915,0,0,1.568,0,6.271s1.915,6.272,7.66,6.272,7.661-1.568,7.661-6.272S13.4,0,7.66,0Z"
           fill="none"
-          stroke={color}
+          stroke={fill}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
@@ -71,7 +76,7 @@ export const Lock = ({ fill, size, height, width, ...props }) => {
   );
 };
 
-export const Activity = ({ fill, size, height, width, ...props }) => {
+export const Activity: React.FC<IconProps> = ({ fill, size, height, width, ...props }) => {
   return (
     <svg
       height={size || height || 24}
@@ -85,7 +90,7 @@ export const Activity = ({ fill, size, height, width, ...props }) => {
         stroke={fill}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeMiterlimit={10}
+        strokeMiterlimit="10"
         strokeWidth={1.5}
       >
         <path d="M6.918 14.854l2.993-3.889 3.414 2.68 2.929-3.78" />
@@ -96,13 +101,7 @@ export const Activity = ({ fill, size, height, width, ...props }) => {
   );
 };
 
-export const Flash = ({
-  fill = "currentColor",
-  size,
-  height,
-  width,
-  ...props
-}) => {
+export const Flash: React.FC<IconProps> = ({ fill = "currentColor", size, height, width, ...props }) => {
   return (
     <svg
       fill="none"
@@ -117,20 +116,14 @@ export const Flash = ({
         stroke={fill}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeMiterlimit={10}
+        strokeMiterlimit="10"
         strokeWidth={1.5}
       />
     </svg>
   );
 };
 
-export const Server = ({
-  fill = "currentColor",
-  size,
-  height,
-  width,
-  ...props
-}) => {
+export const Server: React.FC<IconProps> = ({ fill = "currentColor", size, height, width, ...props }) => {
   return (
     <svg
       fill="none"
@@ -151,13 +144,7 @@ export const Server = ({
   );
 };
 
-export const TagUser = ({
-  fill = "currentColor",
-  size,
-  height,
-  width,
-  ...props
-}) => {
+export const TagUser: React.FC<IconProps> = ({ fill = "currentColor", size, height, width, ...props }) => {
   return (
     <svg
       fill="none"
@@ -172,7 +159,7 @@ export const TagUser = ({
         stroke={fill}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeMiterlimit={10}
+        strokeMiterlimit="10"
         strokeWidth={1.5}
       />
       <path
@@ -186,13 +173,7 @@ export const TagUser = ({
   );
 };
 
-export const Scale = ({
-  fill = "currentColor",
-  size,
-  height,
-  width,
-  ...props
-}) => {
+export const Scale: React.FC<IconProps> = ({ fill = "currentColor", size, height, width, ...props }) => {
   return (
     <svg
       fill="none"
@@ -220,7 +201,7 @@ export const Scale = ({
   );
 };
 
-export const Logo = ({ size = 36, width, height, ...props }) => (
+export const Logo: React.FC<IconProps> = ({ size = 36, width, height, ...props }) => (
   <svg
     fill="none"
     height={size || height}
@@ -237,7 +218,7 @@ export const Logo = ({ size = 36, width, height, ...props }) => (
   </svg>
 );
 
-export const DiscordIcon = ({ size = 24, width, height, ...props }) => {
+export const DiscordIcon: React.FC<IconProps> = ({ size = 24, width, height, ...props }) => {
   return (
     <svg
       height={size || height}
@@ -253,7 +234,7 @@ export const DiscordIcon = ({ size = 24, width, height, ...props }) => {
   );
 };
 
-export const TwitterIcon = ({ size = 24, width, height, ...props }) => {
+export const TwitterIcon: React.FC<IconProps> = ({ size = 24, width, height, ...props }) => {
   return (
     <svg
       height={size || height}
@@ -269,7 +250,7 @@ export const TwitterIcon = ({ size = 24, width, height, ...props }) => {
   );
 };
 
-export const GithubIcon = ({ size = 24, width, height, ...props }) => {
+export const GithubIcon: React.FC<IconProps> = ({ size = 24, width, height, ...props }) => {
   return (
     <svg
       height={size || height}
@@ -287,7 +268,7 @@ export const GithubIcon = ({ size = 24, width, height, ...props }) => {
   );
 };
 
-export const MoonFilledIcon = ({ size = 24, width, height, ...props }) => (
+export const MoonFilledIcon: React.FC<IconProps> = ({ size = 24, width, height, ...props }) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -304,7 +285,7 @@ export const MoonFilledIcon = ({ size = 24, width, height, ...props }) => (
   </svg>
 );
 
-export const SunFilledIcon = ({ size = 24, width, height, ...props }) => (
+export const SunFilledIcon: React.FC<IconProps> = ({ size = 24, width, height, ...props }) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -321,7 +302,7 @@ export const SunFilledIcon = ({ size = 24, width, height, ...props }) => (
   </svg>
 );
 
-export const HeartFilledIcon = ({ size = 24, width, height, ...props }) => (
+export const HeartFilledIcon: React.FC<IconProps> = ({ size = 24, width, height, ...props }) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -341,7 +322,7 @@ export const HeartFilledIcon = ({ size = 24, width, height, ...props }) => (
   </svg>
 );
 
-export const SearchIcon = (props) => (
+export const SearchIcon: React.FC<IconProps> = (props) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -369,7 +350,7 @@ export const SearchIcon = (props) => (
   </svg>
 );
 
-export const NextUILogo = (props) => {
+export const NextUILogo: React.FC<IconProps> = (props) => {
   const { width, height = 40 } = props;
 
   return (
@@ -397,7 +378,7 @@ export const NextUILogo = (props) => {
   );
 };
 
-export const RightArrow = ({ fill = "currentColor", size, height, width, ...props }) => {
+export const RightArrow: React.FC<IconProps> = ({ fill = "currentColor", size, height, width, ...props }) => {
   return (
     <svg
       fill="none"
@@ -410,15 +391,15 @@ export const RightArrow = ({ fill = "currentColor", size, height, width, ...prop
       <path
         d="M8 4l8 8-8 8"
         stroke={fill}
-        strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeWidth={2}
       />
     </svg>
   );
 };
 
-export const RightArrowWithLine = ({ fill = "currentColor", size, height, width, ...props }) => {
+export const RightArrowWithLine: React.FC<IconProps> = ({ fill = "currentColor", size, height, width, ...props }) => {
   return (
     <svg
       fill="none"
@@ -432,20 +413,104 @@ export const RightArrowWithLine = ({ fill = "currentColor", size, height, width,
       <path
         d="M4 12h12"
         stroke={fill}
-        strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeWidth={1.5}
       />
       {/* Pijl aan het einde */}
       <path
         d="M13 8l4 4-4 4"
         stroke={fill}
-        strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeWidth={1.5}
       />
     </svg>
   );
 };
 
+export function UsersIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
 
+export function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+export function Spinner() {
+  return (
+    <div className="absolute right-0 top-0 bottom-0 flex items-center justify-center">
+      <svg
+        className="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-700"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+        <path
+          className="opacity-75"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  );
+}
+
+export function VercelLogo(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      aria-label="Vercel logomark"
+      height="64"
+      role="img"
+      viewBox="0 0 74 64"
+    >
+      <path
+        d="M37.5896 0.25L74.5396 64.25H0.639648L37.5896 0.25Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

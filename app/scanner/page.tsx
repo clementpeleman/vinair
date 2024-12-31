@@ -5,7 +5,7 @@ import React from "react";
 import { MenuScanner } from "@/components/wine/MenuScanner";
 import { ProtectedRoute } from "@/utils/authcontext";
 
-export default function Home() {
+export default function Scanner() {
   return (
     <ProtectedRoute>
       <div className="bg-gradient-to-b from-background to-muted/20 -pt-8 -mt-12">

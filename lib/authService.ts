@@ -1,5 +1,7 @@
 import { supabase } from "@/lib/supabase";
 
+export const auth = supabase.auth;
+
 export const login = async (credentials: {
   email: string;
   password: string;

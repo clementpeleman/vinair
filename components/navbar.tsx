@@ -162,6 +162,11 @@ export default function App() {
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile-lin">
+                <Link className="w-full" color="foreground" href="/dashboard">
+                  Dashboard
+                </Link>
+              </DropdownItem>
+              <DropdownItem key="profile-lin">
                 <Link className="w-full" color="foreground" href="/profile">
                   Profile
                 </Link>

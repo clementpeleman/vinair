@@ -205,16 +205,14 @@ export const Logo: React.FC<IconProps> = ({ size = 36, width, height, ...props }
   <svg
     fill="none"
     height={size || height}
-    viewBox="0 0 32 32"
+    viewBox="0 0 48 48"
     width={size || width}
     {...props}
   >
-    <path
-      clipRule="evenodd"
-      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-      fill="currentColor"
-      fillRule="evenodd"
-    />
+    <g fill="black" >
+      <path d="M 422.215169 52.992188 L 574.222331 52.992188 L 498.21875 187.312663 Z M 422.215169 52.992188 " transform="matrix(0.0805369,0,0,0.0743034,0,0)"/>
+      <path d="M 21.001628 52.992188 L 148.223958 52.992188 L 356.785156 473.617676 L 298.485026 592.008952 Z M 21.001628 52.992188 " transform="matrix(0.0805369,0,0,0.0743034,0,0)"/>
+    </g>
   </svg>
 );
 

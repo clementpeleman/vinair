@@ -10,6 +10,10 @@ module.exports = {
   ],
   theme: {
   	extend: {
+		saturate: {
+			125: '1.25',
+			75: '.75',
+		  },
   		boxShadow: {
   			custom: '0 0 15px rgba(0, 0, 0, 0.02), 0 0 15px rgba(0, 0, 0, 0.02)'
   		},
@@ -105,7 +109,8 @@ module.exports = {
     themes: {
       light: {
         colors: {
-          primary: "#e54726",
+			primary: "#ee5830",
+        //   primary: "#e54726",
           deepPink: "#fd4b8b",
           deepBlue: "rgba(137, 121, 236)"
         }
